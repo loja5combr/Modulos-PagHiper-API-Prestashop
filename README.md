@@ -1,11 +1,9 @@
-#Requisitos
+<h3>Requisitos</h3>
 
 - Prestashop 1.6.x ou 1.7.x
 - Conta vendedor ativada junto a PagHiper - https://paghiper.com
 
-#Módulos de integração PagHiper API para Prestashop
-
-<h3>Como instalar:</h3>
+<h3>Como instalar Módulo de integração PagHiper API para Prestashop</h3>
 1 - Acesse o painel administrativo de sua loja loja Prestashop
 
 ![acesso admin](https://i.imgur.com/aj1KOYf.png)
