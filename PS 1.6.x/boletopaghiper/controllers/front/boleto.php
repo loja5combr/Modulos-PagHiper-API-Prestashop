@@ -89,6 +89,7 @@ class BoletoPagHiperBoletoModuleFrontController extends ModuleFrontController
         $json = array();
 		$json['apiKey'] = trim(Configuration::get('BOLETOPAGHIPER_KEY'));
 		$json['order_id'] = $carrinho->id;
+		$json['partners_id'] = 'QWKN3MEV';
 		$json['payer_email'] = $cliente->email;
 		$json['payer_name'] = (preg_replace('/\s+/', ' ',$endereco->firstname.' '.$endereco->lastname));
 		$json['payer_cpf_cnpj'] = $fiscal;
