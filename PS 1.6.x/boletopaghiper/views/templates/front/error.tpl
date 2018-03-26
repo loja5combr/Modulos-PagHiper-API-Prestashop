@@ -1,5 +1,5 @@
 {*
-* 2007-2015 PrestaShop
+* 2007-2018 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -18,15 +18,15 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author    PrestaShop SA <contact@prestashop.com>
-*  @copyright 2007-2015 PrestaShop SA
+*  @copyright 2007-2018 PrestaShop SA
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
 <div class="box">
-	<h3>{l s='Erro ao iniciar pagamento Bradesco' mod='boletopaghiper'}:</h3>
+	<h3>{l s='Erro ao iniciar pagamento PagHiper' mod='boletopaghiper'}:</h3>
 	<ul class="alert alert-danger">
 		<li>{$erro|escape:'htmlall':'UTF-8'}.</li>
 	</ul>
-    <p><a href="{$link->getPageLink('order', true, NULL, "step=3")|escape:'html'}">{l s='- voltar e corrigir dados' mod='bradescoapi5'}</a></p>
+    <p><a href="{$link->getPageLink('order', true, NULL, "step=3")|escape:'html'}">{l s='- voltar e corrigir dados' mod='boletopaghiper'}</a></p>
 </div>

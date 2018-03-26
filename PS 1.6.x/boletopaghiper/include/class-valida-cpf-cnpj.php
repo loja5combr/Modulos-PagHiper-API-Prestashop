@@ -1,5 +1,5 @@
 <?php
-/**
+/** 
  * ValidaCPFCNPJ valida e formata CPF e CNPJ
  *
  * Exemplo de uso:
