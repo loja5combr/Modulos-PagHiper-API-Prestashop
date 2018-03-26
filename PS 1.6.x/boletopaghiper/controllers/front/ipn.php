@@ -37,18 +37,21 @@ class BoletoPagHiperIpnModuleFrontController extends ModuleFrontController
     public function postProcess()
     {
 		$transacao = '';
+		$id_notificacao = '';
 		if(isset($_POST['transaction_id'])){
 			$transacao = $_POST['transaction_id'];
-		}elseif(isset($_POST['idTransacao'])){
-			$transacao = $_POST['idTransacao'];
 		}
-		if(!empty($transacao) && $_POST['apiKey']==trim(Configuration::get('BOLETOPAGHIPER_KEY'))){
+		if(isset($_POST['notification_id'])){
+			$id_notificacao = $_POST['notification_id'];
+		}
+		if(!empty($transacao) && !empty($id_notificacao) && $_POST['apiKey']==trim(Configuration::get('BOLETOPAGHIPER_KEY'))){
 			$json = array();
 			$json['token'] = trim(Configuration::get('BOLETOPAGHIPER_TOKEN'));
 			$json['apiKey'] = trim(Configuration::get('BOLETOPAGHIPER_KEY'));
 			$json['transaction_id'] = trim($transacao);
+			$json['notification_id'] = trim($id_notificacao);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, 'https://api.paghiper.com/transaction/status/');
+			curl_setopt($ch, CURLOPT_URL, 'https://api.paghiper.com/transaction/notification/');
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);  
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);

@@ -71,15 +71,6 @@ class BoletoPagHiperBoletoModuleFrontController extends ModuleFrontController
         $endereco = new Address((int)($endereco_id));
         $estado = new State((int)($endereco->id_state));
         $cliente = new Customer($carrinho->id_customer);
-        
-        //descontos e taxas boleto
-        $total_desconto = 0;
-        $boleto_taxa = (float)Configuration::get('BOLETOPAGHIPER_TAXA_BOLETO');
-        if($boleto_taxa > 0){
-            $total_boleto = ($total-$frete);
-            $total_desconto = (($total_boleto/100)*abs($boleto_taxa));
-            $desconto += number_format($total_desconto, 2, '.', '');
-        }
 		
 		//custom numero
         $numero = '*';
@@ -153,7 +144,14 @@ class BoletoPagHiperBoletoModuleFrontController extends ModuleFrontController
     {
 		
         $carrinho = Context::getContext()->cart;
+		//se tem desconto 
+		$total = (float)Configuration::get("BOLETOPAGHIPER_TAXA_BOLETO");
+		if($total > 0){
+			$this->module->aplicarDesconto($carrinho);
+			$carrinho = Context::getContext()->cart;
+		}
         $pague = $this->gerar_boleto();
+		
         if(($pague['status']==200 || $pague['status']==201) && isset($pague['retorno']['create_request']) && $pague['retorno']['create_request']['result']=='success'){
             
             $link_boleto = $pague['retorno']['create_request']['bank_slip']['url_slip_pdf'];
@@ -167,12 +165,6 @@ class BoletoPagHiperBoletoModuleFrontController extends ModuleFrontController
                     '{segunda_via}' => $link_boleto,
                     '{link_boleto}'    => $link_boleto,
                 );
-                
-                //se tem desconto 
-                $total = (float)Configuration::get("BOLETOPAGHIPER_TAXA_BOLETO");
-                if($total > 0){
-                    $this->module->aplicarDesconto($carrinho);
-                }
 
                 //cria o pedido
                 $cliente = Context::getContext()->customer;

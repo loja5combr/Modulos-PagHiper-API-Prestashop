@@ -28,8 +28,7 @@
 	<div class="col-xs-12 col-md-6">
 		<p class="payment_module" id="boletopaghiper_payment_button">
 			<a onclick="$(this).attr('disabled','disabled');" class="bankwire" href="{$link->getModuleLink('boletopaghiper', 'fiscal', ['tipo'=>'boleto'], true)|escape:'htmlall':'UTF-8'}" title="{l s='Pagar com Boleto' mod='boletopaghiper'}">
-				Boleto Banc&aacute;rio
-				<span id="total-boleto">({convertPrice price=$total_boleto}{$frase})</span>
+				Boleto Banc&aacute;rio <span id="total-boleto">{$frase}</span>
 			</a>
 		</p>
 	</div>

@@ -276,24 +276,18 @@ class BoletoPagHiper extends PaymentModule
         $carrinho = $params['cart'];
         $link = Context::getContext()->link;
         $total = $carrinho->getOrderTotal(true, 3);
-        $frete = $carrinho->getOrderTotal(true, 5);
-        
-        //tira o frete
-        $total_boleto = $total_cartao = ($total-$frete);
         
         //descontos e taxas boleto
         $frase = '';
         $boleto_taxa = (float)Configuration::get('BOLETOPAGHIPER_TAXA_BOLETO');
         if($boleto_taxa > 0){
-            $total_boleto = ($total_boleto-(($total_boleto/100)*abs($boleto_taxa)));
-            $frase = ' com desconto';
-            $total_boleto = number_format($total_boleto, 2, '.', '');
+            $frase = '(desconto '.(int)$boleto_taxa.'% &agrave; vista)';
         }
 
         //aplica no template
         $this->smarty->assign('module_dir', $this->_path);
         $this->smarty->assign('frase', $frase);
-        $this->smarty->assign('total_boleto', ($total_boleto+$frete));
+		$this->smarty->assign('total_boleto', $total);
 
         return $this->display(__FILE__, 'views/templates/hook/payment.tpl');
     }
