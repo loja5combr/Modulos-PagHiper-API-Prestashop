@@ -80,13 +80,15 @@ class BoletoPagHiper extends PaymentModule
 
     public function getContent()
     {
+		$output = '';
         if (((bool)Tools::isSubmit('submitModule')) == true) {
+			$output .= $this->displayConfirmation($this->l('Dados do módulo atualizados com sucesso!'));
             $this->postProcess();
         }
         $url_loja = Tools::getShopDomainSsl(true, true).__PS_BASE_URI__;
         $this->context->smarty->assign('module_dir', $this->_path);
         $this->context->smarty->assign('url_loja', $url_loja);
-        $output = $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
+        $output .= $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
         return $output.$this->renderForm();
     }
 
