@@ -51,7 +51,7 @@ class BoletoPagHiperIpnModuleFrontController extends ModuleFrontController
 			$json['transaction_id'] = trim($transacao);
 			$json['notification_id'] = trim($id_notificacao);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, 'https://api.paghiper.com/transaction/status/');
+			curl_setopt($ch, CURLOPT_URL, 'https://api.paghiper.com/transaction/notification/');
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);  
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
